@@ -1,24 +1,79 @@
 # Egg Store Manager
 
-Buatkan aplikasi kasir toko telur dengan dashboard omzet, manajemen produk, stok barang, transaksi penjualan, dan laporan.
+Aplikasi kasir toko telur untuk mengelola penjualan, produk, stok barang, dan laporan omzet.
 
-This project was built with [Lovable](https://lovable.dev).
+## Teknologi
 
-## Build with Lovable
+- React
+- TypeScript
+- TanStack Start
+- Tailwind CSS
+- Supabase (Database & Authentication)
+- TanStack Query
+- Bun
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/d1a31f1a-e006-4bf4-8c3f-1340b41947e5).
+## Fitur
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+- Dashboard omzet penjualan
+- Manajemen produk
+- Manajemen stok barang
+- Transaksi penjualan
+- Riwayat transaksi
+- Laporan penjualan
+- Autentikasi pengguna
 
-## Development
+## Persyaratan
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+- [Bun](https://bun.sh/)
+- Akun [Supabase](https://supabase.com/)
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+## Instalasi
+
+Clone repository:
+
+```bash
+git clone https://github.com/putraalrifkiiii/egg-store-manager.git
+cd egg-store-manager
 ```
+
+Install dependencies:
+
+```bash
+bun install
+```
+
+## Konfigurasi Environment
+
+Buat file `.env` di root project dan isi konfigurasi Supabase:
+
+```env
+SUPABASE_PROJECT_ID=
+SUPABASE_URL=
+SUPABASE_PUBLISHABLE_KEY=
+
+VITE_SUPABASE_PROJECT_ID=
+VITE_SUPABASE_URL=
+VITE_SUPABASE_PUBLISHABLE_KEY=
+```
+
+Gunakan URL dan publishable key dari project Supabase milik sendiri.
+
+Jangan mengunggah file `.env` atau secret key ke repository publik.
+
+## Menjalankan Aplikasi
+
+```bash
+bun run dev
+```
+
+Aplikasi akan berjalan melalui server development Vite.
+
+## Build
+
+```bash
+bun run build
+```
+
+## Repository
+
+GitHub: https://github.com/putraalrifkiiii/egg-store-manager

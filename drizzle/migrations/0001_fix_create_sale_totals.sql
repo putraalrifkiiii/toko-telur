@@ -13,6 +13,7 @@ DECLARE
   _cost numeric := 0;
 BEGIN
   IF _uid IS NULL THEN RAISE EXCEPTION 'Harus masuk terlebih dahulu'; END IF;
+  IF NOT public.is_staff() THEN RAISE EXCEPTION 'Akses ditolak: bukan staf aktif'; END IF;
   IF _items IS NULL OR jsonb_array_length(_items) = 0 THEN RAISE EXCEPTION 'Keranjang kosong'; END IF;
 
   -- Pass 1: lock products, validate stock, compute totals

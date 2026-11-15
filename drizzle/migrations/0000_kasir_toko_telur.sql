@@ -1,3 +1,36 @@
+
+-- Authorized staff
+CREATE TABLE public.staff_members (
+  user_id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  role text NOT NULL DEFAULT 'staff'
+    CHECK (role IN ('owner', 'staff')),
+  is_active boolean NOT NULL DEFAULT true,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
+-- Client users cannot manage the staff list directly
+REVOKE ALL ON public.staff_members FROM PUBLIC, anon, authenticated;
+GRANT ALL ON public.staff_members TO service_role;
+
+-- Check whether the current user is an active staff member
+CREATE OR REPLACE FUNCTION public.is_staff()
+RETURNS boolean
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT EXISTS (
+    SELECT 1
+    FROM public.staff_members
+    WHERE user_id = auth.uid()
+      AND is_active = true
+  );
+$$;
+
+REVOKE EXECUTE ON FUNCTION public.is_staff() FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.is_staff() TO authenticated;
+
 -- Products
 CREATE TABLE public.products (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
